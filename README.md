@@ -6,6 +6,8 @@
 
 작성자 : 이가은
 
+깃헙 페이지 : https://gaeundev.github.io/wanted-pre-onboarding-challenge-fe-2/
+
 ## Methods
 
 ### [CREATE](global.html#createTodo)
