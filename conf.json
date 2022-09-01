@@ -1,0 +1,4 @@
+{
+    "plugins": ["plugins/markdown"],
+    "opts": { "encoding": "utf8", "readme": "README.md" }
+}
