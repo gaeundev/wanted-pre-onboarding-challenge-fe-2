@@ -6,7 +6,8 @@
 
 작성자 : 이가은
 
-깃헙 페이지 : https://gaeundev.github.io/wanted-pre-onboarding-challenge-fe-2/out/index.html
+함수 실행 결과 보기 : https://gaeundev.github.io/wanted-pre-onboarding-challenge-fe-2/index.html
+JSDoc : https://gaeundev.github.io/wanted-pre-onboarding-challenge-fe-2/out/index.html
 
 ## Methods
 
