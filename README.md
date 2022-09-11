@@ -6,8 +6,22 @@
 
 작성자 : 이가은
 
-함수 실행 결과 보기 : https://gaeundev.github.io/wanted-pre-onboarding-challenge-fe-2  
-JSDoc : https://gaeundev.github.io/wanted-pre-onboarding-challenge-fe-2/out/index.html
+### 할 일 체크리스트 실행 결과
+
+<img src="./images/todo_example.jpg" width="80%" />
+
+### 할 일 체크리스트 실행방법
+
+```shell
+$ npm ci
+$ npm run build
+```
+
+이후 live-server 를 사용해서 실행
+
+### JSDoc 작성
+
+https://gaeundev.github.io/wanted-pre-onboarding-challenge-fe-2/out/index.html
 
 ## Methods
 

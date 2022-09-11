@@ -43,23 +43,34 @@ const createTodo = ({ content, category, tags }) => {
     content: content.trim(),
     isCompleted: false,
     category: category,
-    tags: tags
+    tags: tags ? tags : []
   };
 
   todoList.push(todo);
 };
 
 /**
- * - 모든 할 일을 조회할 수 있다.
  * - ID를 기반으로 특정 할 일을 조회할 수 있다.
  *
  * @function readTodo
- * @param {string|undefined} id - 할 일 아이디 (undefined일 경우 모든 할 일을 조회)
+ * @param {string} id - 할 일 아이디 (undefined일 경우 모든 할 일을 조회)
  */
 const readTodo = id => {
-  if (!id) return todoList;
+  const todo = todoList.find(todo => todo.id === id);
 
-  return todoList.filter(value => value.id === id);
+  if (!todo) new Error('');
+
+  return todo;
+};
+
+/**
+ * - 모든 할 일을 조회할 수 있다.
+ *
+ * @function readTodoList
+ */
+
+const readTodoList = () => {
+  return todoList;
 };
 
 /**
@@ -74,7 +85,7 @@ const readTodo = id => {
 const updateTodo = todoData => {
   if (todoList.length < 1) return new Error('할 일 리스트가 없습니다.');
 
-  const todoIndex = todoList.findIndex(value => value.id === todoData.id);
+  const todoIndex = todoList.findIndex(todo => todo.id === todoData.id);
 
   if (todoIndex < 0) return;
 
@@ -112,111 +123,20 @@ const deleteTodo = id => {
  * @function deleteTodoTag
  * @param {Object} params
  * @param {string} params.id - 할 일 아이디
- * @param {string|undefined} params.tag - 태그 (undefined일 경우 모든 태그 삭제)
+ * @param {number|undefined} params.tagIdx - 태그의 인덱스 번호로 삭제
  */
 
-const deleteTodoTag = ({ id, tag }) => {
+const deleteTodoTag = ({ id, tagIdx }) => {
   if (todoList.length < 1) return new Error('할 일 리스트가 없습니다.');
 
-  const todoIndex = todoList.findIndex(value => value.id === id);
+  const todoIndex = todoList.findIndex(todo => todo.id === id);
 
   if (todoIndex < 0) return;
 
-  if (!tag) {
+  if (tagIdx === undefined) {
     todoList[todoIndex].tags = [];
     return;
   }
 
-  const tags = todoList[todoIndex].tags;
-
-  if (!tags) return;
-
-  // ! 일관적이지 못한 프로세스 발견
-  // update에서는 '기존+수정된' 내용 전체를 한 번에 업데이트 하도록 했는데
-  // tag는 개별적으로 삭제하도록 만듬
-  // 동일한 프로세스를 가져가려면 tags 자체를 param으로 넘겨 받았어야 함
-  const tagIndex = tags.findIndex(value => value === tag);
-  tags.splice(tagIndex, 1);
-
-  todoList[todoIndex].tags = tags;
+  todoList[todoIndex].tags?.splice(tagIdx, 1);
 };
-
-/* 함수 실행 테스트 */
-const main = () => {
-  const $main = document.querySelector('.main');
-
-  if (!$main) return;
-
-  let text = '';
-
-  text += `<h1>함수 실행 결과</h1>`;
-  /*  createTodo 함수 실행 */
-  createTodo({ content: 'gbhm', category: '카테1', tags: ['a', 'b', 'c', 'd'] });
-  createTodo({ content: 'gbdqw', category: '카테2', tags: ['a12', 'gb', 'bcc', 'dgd'] });
-  createTodo({ content: 'gbqw', category: '카테2', tags: ['a', 'bff', 'aac', 'vxcd'] });
-  createTodo({ content: 'bbsdg', category: '카테3', tags: ['qwea', 'gcb', 'cvc', 'bbd'] });
-  createTodo({ content: '', category: '카테1', tags: ['awea', 'asdb', 'xcvc', 'dasd'] });
-
-  /*  readTodo 함수 실행 */
-  let todoData = readTodo(undefined); // undefined를 써줘야하네..?
-  text += `<h2>추가한 모든 할 일 조회</h2>`;
-  text += JSON.stringify(todoData);
-
-  // 사실상 배열로 리턴할 필요가 없는 것이기 때문에 함수를 분리해서 쓰면 좋았을 듯
-  todoData = readTodo('todo_0');
-
-  text += `<h2>id 기반 할 일 조회</h2>`;
-  text += JSON.stringify(todoData);
-
-  /* updateTodo 함수 실행 */
-  updateTodo({
-    id: 'todo_0',
-    content: 'gbhm_update',
-    isCompleted: true,
-    category: '카테2',
-    tags: ['a', 'bb', 'c', 'd']
-  });
-
-  // 수정된 데이터 확인
-  todoData = readTodo('todo_0');
-  text += `<h2>id를 제외한 모든 속성 수정</h2>`;
-  text += JSON.stringify(todoData);
-
-  updateTodo({ id: 'todo_0', content: 'gbhm', isCompleted: true, category: '카테1', tags: ['ab', 'bc', 'cd', 'de'] });
-
-  // 수정된 데이터 확인
-  todoData = readTodo('todo_0');
-
-  text += `<h2>특정 할 일의 특정 태그를 수정</h2>`;
-  text += JSON.stringify(todoData);
-
-  /* deleteTodo 함수 실행 */
-
-  deleteTodoTag({ id: 'todo_0', tag: 'bc' });
-  todoData = readTodo('todo_0');
-
-  text += `<h2>특정 할 일의 특정 태그 삭제</h2>`;
-  text += JSON.stringify(todoData);
-
-  deleteTodoTag({ id: 'todo_1', tag: undefined });
-  todoData = readTodo('todo_1');
-
-  text += `<h2>특정 할 일의 모든 태그 삭제</h2>`;
-  text += JSON.stringify(todoData);
-
-  // 특정 할 일 제거
-  deleteTodo('todo_1');
-  todoData = readTodo(undefined);
-  text += `<h2>특정 할 일 삭제</h2>`;
-  text += JSON.stringify(todoData);
-
-  // 모든 할 일 제거
-  deleteTodo(undefined);
-  todoData = readTodo(undefined);
-  text += `<h2>모든 할 일 삭제</h2>`;
-  text += JSON.stringify(todoData);
-
-  $main.innerHTML = text;
-};
-
-main();
