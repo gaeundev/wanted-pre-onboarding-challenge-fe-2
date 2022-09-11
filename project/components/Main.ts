@@ -19,18 +19,24 @@ export default function Main($main: HTMLElement) {
 
       if (!contentTarget.value) return;
 
-      const todo = {
-        id: modalTodo.todoId,
-        content: contentTarget.value,
-        isCompleted: false,
-        category: categoryTarget.value,
-        tags: tagsTarget.value
-          .split(',')
-          .filter(tag => tag.trim() != '')
-          .map(tag => tag.trim())
-      };
+      const todoData = readTodo(modalTodo.todoId);
 
-      updateTodo(todo);
+      if (todoData) {
+        const todo = {
+          id: modalTodo.todoId,
+          content: contentTarget.value,
+          isCompleted: false,
+          category: categoryTarget.value,
+          tags: tagsTarget.value
+            .split(',')
+            .filter(tag => tag.trim() != '')
+            .map(tag => tag.trim())
+        };
+
+        todo.isCompleted = todoData?.isCompleted;
+        updateTodo(todoData);
+      }
+
       todoComponent.setState();
 
       modalTodo.hide();
