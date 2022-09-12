@@ -51,7 +51,7 @@ export default function TodoList(this: TodoListThis, { $main, todoData, onClick,
           .join('');
 
         const categoryColor =
-          todo.category === '카테고리3' ? '#ffec3d' : todo.category === '카테고리2' ? '#ffc23d' : '#ff3939';
+          todo.category === 'category3' ? '#ffec3d' : todo.category === 'category2' ? '#ffc23d' : '#ff3939';
 
         return `<li class="todoList" data-id=${todo.id}>
         <span style="background-color:${categoryColor}"></span>

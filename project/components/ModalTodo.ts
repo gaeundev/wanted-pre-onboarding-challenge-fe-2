@@ -29,9 +29,9 @@ export function ModalTodo(this: ModalTodoThis, { onSubmit, closeOnClick }: Modal
     <h2>할 일 수정</h2>
     <form id="updateForm">
     <select name="updateCategories" id="updateCategorySelect">
-      <option value="카테고리1" ${todoData?.category === '카테고리1' ? 'selected' : ''}>🟥 기본</option>
-      <option value="카테고리2" ${todoData?.category === '카테고리2' ? 'selected' : ''}>🟧 개발</option>
-      <option value="카테고리3" ${todoData?.category === '카테고리3' ? 'selected' : ''}>🟨 취미</option>
+      <option value="category1" ${todoData?.category === 'category1' ? 'selected' : ''}>🟥 기본</option>
+      <option value="category2" ${todoData?.category === 'category2' ? 'selected' : ''}>🟧 개발</option>
+      <option value="category3" ${todoData?.category === 'category3' ? 'selected' : ''}>🟨 취미</option>
     </select>
     <input id="updateInputContent" type="text" placeholder="할 일을 입력해주세요." value=${todoData?.content} />
     <input id="updateInputTags" type="text" placeholder="태그를 입력해주세요 ','로 여러개를 입력할 수 있어요"

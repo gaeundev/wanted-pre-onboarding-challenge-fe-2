@@ -68,7 +68,7 @@ export default function Main($main: HTMLElement) {
 
         createTodo(data);
 
-        categoryTarget.value = '카테고리1';
+        categoryTarget.value = 'category1';
         contentTarget.value = '';
         tagsTarget.value = '';
 
