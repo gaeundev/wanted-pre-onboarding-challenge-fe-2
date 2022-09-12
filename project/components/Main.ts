@@ -77,7 +77,6 @@ export default function Main($main: HTMLElement) {
     }
   });
 
-  // check 한 결과 반영해야 함
   const todoComponent = new (TodoList as any)({
     $main: $main,
     todoData: todoData,

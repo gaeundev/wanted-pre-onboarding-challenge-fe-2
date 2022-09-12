@@ -35,7 +35,7 @@ export default function TodoList(this: TodoListThis, { $main, todoData, onClick,
 
   this.render = () => {
     const todoData = this.state;
-    console.log(todoData);
+
     if (todoData.length > 0) {
       $allRemoveButton.setAttribute('style', 'display:block;');
     } else {

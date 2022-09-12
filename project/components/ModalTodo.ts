@@ -22,7 +22,7 @@ export function ModalTodo(this: ModalTodoThis, { onSubmit, closeOnClick }: Modal
   this.render = () => {
     const todoData = readTodo(this.todoId);
     const tags = todoData?.tags?.join(',');
-    console.log(tags);
+
     $modal.innerHTML = `
     <div class="modalContent">
     <button class="modalCloseButton">X</button>
@@ -34,7 +34,7 @@ export function ModalTodo(this: ModalTodoThis, { onSubmit, closeOnClick }: Modal
       <option value="category3" ${todoData?.category === 'category3' ? 'selected' : ''}>🟨 취미</option>
     </select>
     <input id="updateInputContent" type="text" placeholder="할 일을 입력해주세요." value=${todoData?.content} />
-    <input id="updateInputTags" type="text" placeholder="태그를 입력해주세요 ','로 여러개를 입력할 수 있어요"
+    <input id="updateInputTags" type="text" placeholder="태그를 입력해주세요. ','로 여러개를 입력할 수 있어요"
       value="${tags}" />
     <input class="updateTodoButton" type="submit" value="수정" />
     </form>
