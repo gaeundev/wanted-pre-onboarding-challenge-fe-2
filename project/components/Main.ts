@@ -6,8 +6,8 @@ import { ModalTodo } from './ModalTodo';
 import '../styles/index.css';
 
 export default function Main(this: any, $main: HTMLElement) {
-  if (!(this instanceof ModalTodo)) {
-    throw new Error('ModalTodo가 생성자 함수가 아닙니다.');
+  if (!(this instanceof Main)) {
+    throw new Error('Main가 생성자 함수가 아닙니다.');
   }
 
   let todoData: TodoType[] = readTodoList();
