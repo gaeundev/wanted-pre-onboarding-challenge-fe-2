@@ -13,6 +13,10 @@ interface ModalTodoThis {
 }
 
 export function ModalTodo(this: ModalTodoThis, { onSubmit, closeOnClick }: ModalTodoProps) {
+  if (!(this instanceof ModalTodo)) {
+    throw new Error('ModalTodo가 생성자 함수가 아닙니다.');
+  }
+
   const $body = document.body;
   const $modal = $body.appendChild(document.createElement('div'));
   $modal.classList.add('modal');
