@@ -44,6 +44,21 @@ h1 {
 
 .main {
   margin-top: 20px;
+  padding: 0 10%;
+}
+
+@media (min-width: 768px) {
+  .main {
+    margin-top: 30px;
+    padding: 0 10%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main {
+    margin-top: 40px;
+    padding: 0 25%;
+  }
 }
 
 .modal {
