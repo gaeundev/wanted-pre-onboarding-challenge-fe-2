@@ -23,11 +23,17 @@ $ npm run build
 
 https://gaeundev.github.io/wanted-pre-onboarding-challenge-fe-2/out/index.html
 
+## Members
+
+### [todoList](global.html#todoList)
+
 ## Methods
 
 ### [CREATE](global.html#createTodo)
 
 ### [READ](global.html#readTodo)
+
+### [READ LIST](global.html#readTodoList)
 
 ### [UPDATE](global.html#multiplication)
 
