@@ -11,7 +11,6 @@ export default function Main($main: HTMLElement) {
   const modalTodo = new (ModalTodo as any)({
     onSubmit: (e: Event) => {
       e.preventDefault();
-      const $updateForm = document.getElementById('updateForm');
 
       const categoryTarget = document.getElementById('updateCategorySelect') as HTMLSelectElement;
       const contentTarget = document.getElementById('updateInputContent') as HTMLTextAreaElement;
@@ -21,7 +20,7 @@ export default function Main($main: HTMLElement) {
 
       const todoData = readTodo(modalTodo.todoId);
 
-      if (todoData) {
+      if (todoData != undefined) {
         const todo = {
           id: modalTodo.todoId,
           content: contentTarget.value,
@@ -34,7 +33,7 @@ export default function Main($main: HTMLElement) {
         };
 
         todo.isCompleted = todoData?.isCompleted;
-        updateTodo(todoData);
+        updateTodo(todo);
       }
 
       todoComponent.setState();
